@@ -1,0 +1,52 @@
+[gd_scene load_steps=5 format=3 uid="uid://bvxaebqmcyfb5"]
+
+[ext_resource type="Script" path="res://scripts/pause.gd" id="1_gktxw"]
+[ext_resource type="StyleBox" uid="uid://xshyr7im6uu6" path="res://tela inicial/pause/pause.tres" id="2_6jaxu"]
+
+[sub_resource type="SystemFont" id="SystemFont_by5uh"]
+subpixel_positioning = 0
+
+[sub_resource type="Theme" id="Theme_a8ktg"]
+Button/colors/font_focus_color = Color(0.94902, 0.756863, 0.145098, 1)
+Button/colors/font_hover_color = Color(0.94902, 0.756863, 0.145098, 1)
+Button/colors/font_hover_pressed_color = Color(0.714521, 0.399465, 7.70092e-07, 1)
+Button/colors/font_pressed_color = Color(0.94902, 0.756863, 0.145098, 1)
+Button/fonts/font = SubResource("SystemFont_by5uh")
+Button/styles/focus = ExtResource("2_6jaxu")
+Button/styles/hover = null
+Button/styles/normal = null
+Button/styles/pressed = null
+
+[node name="pause" type="CanvasLayer"]
+process_mode = 3
+script = ExtResource("1_gktxw")
+
+[node name="bg_overlay" type="ColorRect" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.00784314, 0.00784314, 0.00784314, 0.321569)
+
+[node name="menu_holder" type="VBoxContainer" parent="."]
+anchors_preset = 14
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_top = -33.0
+offset_bottom = 33.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="resume_btn" type="Button" parent="menu_holder"]
+layout_mode = 2
+theme = SubResource("Theme_a8ktg")
+text = "RESUME GAME"
+
+[node name="quit_btn" type="Button" parent="menu_holder"]
+layout_mode = 2
+text = "QUIT GAME"
+
+[connection signal="pressed" from="menu_holder/resume_btn" to="." method="_on_resume_btn_pressed"]
+[connection signal="pressed" from="menu_holder/quit_btn" to="." method="_on_quit_btn_pressed"]
